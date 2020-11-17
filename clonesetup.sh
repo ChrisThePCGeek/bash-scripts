@@ -1,7 +1,7 @@
 #!/bin/bash
 #bash script to reconfigure some stuff for cloned ubuntu vm's
 #constant variables
-pref_tz='America/New_York';
+pref_tz="America/New_York";
 
 
 #remove and re-create ssh host keys
@@ -31,11 +31,13 @@ read hostnm;
 echo "[INFO] Host name being set to $hostnm...";
 hostnamectl set-hostname $hostnm;
 echo "[INFO] updating /etc/hosts...";
-sed 's/$oldhost/$hostnm' /etc/hosts;
+sed "s/$oldhost/$hostnm/" /etc/hosts;
 #insert sed command here to edit /etc/hosts
 
 echo "...done.";
-cat /etc/hostname;
+
+echo "Hosts file printout:";
+echo "====================";
 cat /etc/hosts;
 
 #run apt updates?
@@ -43,7 +45,7 @@ echo -n "Do you want to run apt updates now? (Y/n";
 read -n 1 answer;
 #insert code here to check if entered n or N or if Y nothing entered default to Y
 
-if [ -z $answer ] || [ $answer == 'y' ] || [ $answer =='Y' ]
+if [ -z answer ] || [ answer == 'y' ] || [ answer =='Y' ]
 then
 	#run updates
 	echo "[INFO] Running updates...";
