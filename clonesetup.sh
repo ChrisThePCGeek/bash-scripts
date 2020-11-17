@@ -1,7 +1,7 @@
 #!/bin/bash
 #bash script to reconfigure some stuff for cloned ubuntu vm's
 #constant variables
-pref_tz='America/New_York'
+pref_tz='America/New_York';
 
 
 #remove and re-create ssh host keys
