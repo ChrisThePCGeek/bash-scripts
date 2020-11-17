@@ -45,7 +45,7 @@ echo -n "Do you want to run apt updates now? (Y/n";
 read -n 1 answer;
 #insert code here to check if entered n or N or if Y nothing entered default to Y
 
-if [ -z answer ] || [ answer == 'y' ] || [ answer =='Y' ]
+if [ -z "$answer" ] || [ answer == 'y' ] || [ answer =='Y' ]
 then
 	#run updates
 	echo "[INFO] Running updates...";
