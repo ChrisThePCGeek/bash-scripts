@@ -64,9 +64,9 @@ echo;
 echo "...done.";
 
 echo "Hosts file printout:";
-echo -e "====================${BCyan}";
+echo -e "${BPurple} ====================";
 cat /etc/hosts;
-echo -e "${NC}";
+echo -e "==================== ${NC}\n";
 
 #run apt updates?
 echo -n "Do you want to run apt updates now? (Y/n";
