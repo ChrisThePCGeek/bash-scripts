@@ -13,27 +13,31 @@ echo "[INFO] SSH host keys regenerated";
 
 #ask to reconfigure timezone if not currently set to preferred above
 read cur_tz < /etc/timezone;
+echo "[INFO] Checking to see if timezone is set to preferred as configured in script..."
 if [ "$cur_tz" != "$pref_tz" ]
 then
 	echo "[INFO] Current time zone not set to preferred...running tz reconfigure...";
 	dpkg-reconfigure tzdata;
 	cat /etc/timezone;
+else
+	echo "[INFO] Current time zone is set to preferred, $cur_tz";
 fi
-
-
+echo "================"
+echo;
 #set new local host name
 echo "[INFO] Reading current hostname from file";
 read oldhost < /etc/hostname
 echo "[INFO] Current host name is : $oldhost";
+echo "."
 echo "[INFO] Setting new hostname";
-echo -n "Please enter new hostname: ";
+echo -n "  Please enter new hostname: ";
 read hostnm;
 echo "[INFO] Host name being set to $hostnm...";
 hostnamectl set-hostname $hostnm;
 echo "[INFO] updating /etc/hosts...";
 sed -i -n "s/$oldhost/$hostnm/" /etc/hosts;
 #insert sed command here to edit /etc/hosts
-
+echo;
 echo "...done.";
 
 echo "Hosts file printout:";
