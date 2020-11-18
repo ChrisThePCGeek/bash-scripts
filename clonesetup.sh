@@ -2,6 +2,7 @@
 #bash script to reconfigure some stuff for cloned ubuntu vm's
 #constant variables
 pref_tz="America/New_York";
+wget "https://raw.githubusercontent.com/ChrisThePCGeek/bash-scripts/main/shell_colors";
 . shell_colors;
 
 #remove and re-create ssh host keys
