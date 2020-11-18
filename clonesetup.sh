@@ -23,7 +23,7 @@ else
 	echo "[INFO] Current time zone is set to preferred, $cur_tz";
 fi
 echo "================"
-echo;
+echo
 #set new local host name
 echo "[INFO] Reading current hostname from file";
 read oldhost < /etc/hostname
@@ -35,7 +35,7 @@ read hostnm;
 echo "[INFO] Host name being set to $hostnm...";
 hostnamectl set-hostname $hostnm;
 echo "[INFO] updating /etc/hosts...";
-sed -i -n "s/$oldhost/$hostnm/" /etc/hosts;
+sed -i "s/$oldhost/$hostnm/" /etc/hosts;
 #insert sed command here to edit /etc/hosts
 echo;
 echo "...done.";
