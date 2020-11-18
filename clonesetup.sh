@@ -1,7 +1,7 @@
 #!/bin/bash
 #bash script to reconfigure some stuff for cloned ubuntu vm's
 #constant variables
-pref_tz="America/New_York";
+#pref_tz="America/New_York";
 
 #these are constants for the color escape sequences
 #======================================
@@ -36,14 +36,18 @@ echo -e "${BYellow}[INFO]${BGreen} SSH host keys regenerated${NC}";
 
 #ask to reconfigure timezone if not currently set to preferred above
 read cur_tz < /etc/timezone;
-echo -e "${BYellow}[INFO]${BGreen} Checking to see if timezone is set to preferred as configured in script...${NC}"
-if [ "$cur_tz" != "$pref_tz" ]
+echo -e "${BYellow}[INFO]${BGreen} Current TimeZone is...${BRed} $cur_tz ${NC}";
+echo -n "Would you like to select a different time zone? (N/y)";
+read -n 1 tzans;
+if [ "$tzans" = "y" ] || [ "$tzans" = "Y" ]
 then
-	echo -e "${BYellow}[INFO]${BGreen} Current time zone not set to preferred...running tz reconfigure...${NC}";
+	echo -e "${BYellow}[INFO]${BGreen}...running tz reconfigure...${NC}";
 	dpkg-reconfigure tzdata;
+	echo  -n -e "${BYellow}[INFO] TimeZone change to ${BRed}";
 	cat /etc/timezone;
+	echo -e "\n${NC} ";
 else
-	echo -e "${BYellow}[INFO]${BGreen} Current time zone is set to preferred,${BRed} $cur_tz ${NC}";
+	echo -e "${BYellow}[INFO]${BGreen} Current time zone,${BRed} $cur_tz ${BGreen}, will remain unchanged.${NC}";
 fi
 echo "================"
 echo
