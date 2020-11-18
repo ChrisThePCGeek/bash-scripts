@@ -13,7 +13,7 @@ echo "[INFO] SSH host keys regenerated";
 
 #ask to reconfigure timezone if not currently set to preferred above
 read cur_tz < /etc/timezone;
-if [ cur_tz != pref_tz ]
+if [ "$cur_tz" != "$pref_tz" ]
 then
 	echo "[INFO] Current time zone not set to preferred...running tz reconfigure...";
 	dpkg-reconfigure tzdata;
@@ -31,7 +31,7 @@ read hostnm;
 echo "[INFO] Host name being set to $hostnm...";
 hostnamectl set-hostname $hostnm;
 echo "[INFO] updating /etc/hosts...";
-sed "s/$oldhost/$hostnm/" /etc/hosts;
+sed -i -n "s/$oldhost/$hostnm/" /etc/hosts;
 #insert sed command here to edit /etc/hosts
 
 echo "...done.";
@@ -43,9 +43,8 @@ cat /etc/hosts;
 #run apt updates?
 echo -n "Do you want to run apt updates now? (Y/n";
 read -n 1 answer;
-#insert code here to check if entered n or N or if Y nothing entered default to Y
 
-if [ -z "$answer" ] || [ answer == 'y' ] || [ answer =='Y' ]
+if [ -z "$answer" ] || [ "$answer" = "y" ] || [ "$answer" = "Y" ]
 then
 	#run updates
 	echo "[INFO] Running updates...";
@@ -53,4 +52,21 @@ then
 else
 	#dont run updates
 	echo "[INFO] skipping updates.";
+fi
+
+#reset answer variable
+answer="";
+
+#reboot the server?
+echo -n "Do you want to reboot now? (Y/n";
+read -n 1 answer;
+
+if [ -z "$answer" ] || [ "$answer" = "y" ] || [ "$answer" = "Y" ]
+then
+	#run updates
+	echo "[INFO] rebooting...";
+	reboot;
+else
+	#dont run updates
+	echo "[INFO] not rebooting. Please remember to reboot to apply changes just made.";
 fi
