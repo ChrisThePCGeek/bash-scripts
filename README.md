@@ -6,7 +6,7 @@ This file runs some common tasks as a batch job when creating clones of a base u
 ### Useage:
 You can run this by using the below curl command or if you can't copy/paste into the console like on a VM for example, see below for directions on using the little helper script run-clonesetup.sh
 
-    `Curl command : <sudo bash -c "$(curl -f sSL https://raw.githubusercontent.com/ChrisThePCGeek/bash-scripts/main/clonesetup.sh)">`
+    Curl command : <sudo bash -c "$(curl -f sSL https://raw.githubusercontent.com/ChrisThePCGeek/bash-scripts/main/clonesetup.sh)">
 
 ## run-clonesetup.sh
 1. Download to user's home directory or /root
