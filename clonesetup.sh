@@ -1,7 +1,10 @@
 #!/bin/bash
 #bash script to reconfigure some stuff for cloned ubuntu vm's
-#constant variables
-#pref_tz="America/New_York";
+#tested and known to work on Ubuntu-server 20.04
+#======================================================
+#Created by ThePCGeek https://github.com/ChrisThePCGeek
+#======================================================
+
 
 #these are constants for the color escape sequences
 #======================================
@@ -30,7 +33,8 @@ White='\033[0;37m'        # White
 #remove and re-create ssh host keys
 echo -e "${BYellow}[INFO]${BGreen} removing host ssh keys${NC}";
 rm -v /etc/ssh/ssh_host_*;
-dpkg-reconfigure openssh-server;
+#dpkg-reconfigure openssh-server;
+ssh-keygen -A; #regenerate host SSH keys without re-configuring using dpkg
 service ssh restart;
 echo -e "${BYellow}[INFO]${BGreen} SSH host keys regenerated${NC}";
 
