@@ -33,10 +33,17 @@ White='\033[0;37m'        # White
 #remove and re-create ssh host keys
 echo -e "${BYellow}[INFO]${BGreen} removing host ssh keys${NC}";
 rm -v /etc/ssh/ssh_host_*;
+
 #dpkg-reconfigure openssh-server;
 ssh-keygen -A; #regenerate host SSH keys without re-configuring using dpkg
 service ssh restart;
 echo -e "${BYellow}[INFO]${BGreen} SSH host keys regenerated${NC}";
+
+#regenerate the machine ID
+rm -f /etc/machine-id /var/lib/dbus/machine-id
+dbus-uuidgen --ensure=/etc/machine-id
+dbus-uuidgen --ensure
+echo -e "${BYellow}[INFO]${BGreen} MachineID regenerated${NC}";
 
 #ask to reconfigure timezone if not currently set to preferred above
 read cur_tz < /etc/timezone;
