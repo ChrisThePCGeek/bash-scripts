@@ -50,7 +50,7 @@ read cur_tz < /etc/timezone;
 echo -e "${BYellow}[INFO]${BGreen} Current TimeZone is...${BRed} $cur_tz ${NC}";
 echo -n "Would you like to select a different time zone? (N/y)";
 read -n 1 tzans;
-if [ "$tzans" = "y" ] || [ "$tzans" = "Y" ]
+if [ "$tzans" =~ "[yY]" ]
 then
 	echo -e "${BYellow}[INFO]${BGreen}...running tz reconfigure...${NC}";
 	dpkg-reconfigure tzdata;
@@ -84,10 +84,10 @@ cat /etc/hosts;
 echo -e "==================== ${NC}\n";
 
 #run apt updates?
-echo -n "Do you want to run apt updates now? (Y/n";
+echo -n "Do you want to run apt updates now? (Y/n)";
 read -n 1 answer;
 
-if [ -z "$answer" ] || [ "$answer" = "y" ] || [ "$answer" = "Y" ]
+if [ -z "$answer" ] || [ "$answer" =~ "[yY]" ]
 then
 	#run updates
 	echo -e "\n${BYellow}[INFO]${BGreen} Running updates...${NC}";
@@ -101,10 +101,10 @@ fi
 answer="";
 
 #reboot the server?
-echo -n "Do you want to reboot now? (Y/n";
+echo -n "Do you want to reboot now? (Y/n)";
 read -n 1 answer;
 
-if [ -z "$answer" ] || [ "$answer" = "y" ] || [ "$answer" = "Y" ]
+if [ -z "$answer" ] || [ "$answer" =~ "[yY]" ]
 then
 	#run updates
 	echo -e "\n${BYellow}[INFO]${BGreen} rebooting...${NC}";
