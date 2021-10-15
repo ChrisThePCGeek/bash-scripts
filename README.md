@@ -12,3 +12,6 @@ You can run this by using the below curl command or if you can't copy/paste into
 1. Download to user's home directory or /root
 1. `chmod +x /path/run-clonesetup.sh`
 1. to run type `sudo /path/run-clonesetup.sh`
+
+## Update-portainer.sh
+Simple script to stop portainer and pull the new latest image, then start it back up again.  Download it and chmod +x then `./update-portainer.sh` *make sure to run as user with docker privs*
